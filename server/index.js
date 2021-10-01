@@ -5,7 +5,7 @@ const cookieParser = require('cookie-parser');
 const config = require('./config/key');
 const { auth } = require('./middleware/auth');
 const { User } = require("./models/User");
-const port=8080;
+const port=5000;
 
 //가져온 bodyParser 모듈에 옵션 주기
 //수업시간의 방식 - 최근에는 express 업데이트에서 bodyParser를 더 이상 가져오지 않아도 됨
@@ -25,6 +25,11 @@ mongoose.connect(config.mongoURI).then(() => console.log('MongoDB Connected...')
 
 
 app.get('/', (req, res) => res.send('Hello World!~~ '))
+
+
+app.get('/api/hello',(req,res)=> res.send("안녕하세요!"))
+
+
 
 app.get('/api/hello', (req, res) => res.send('Hello World!~~ '))
 
@@ -107,5 +112,5 @@ app.get('/api/users/logout', auth, (req, res) => {
     })
 })
 
-
+//연결
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
